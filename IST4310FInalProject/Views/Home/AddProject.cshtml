@@ -10,19 +10,22 @@
                 <input asp-for="StudentInfoId" type="hidden" />
                     <div class="form-floating mb-3">
                         <input asp-for="Title" class="form-control" aria-required="true" />
-                    <label asp-for="Title" style="margin-left: 10px" class="form-label fs-6">First Name</label>
+                    <label asp-for="Title" style="margin-left: 10px" class="form-label fs-6">Title Of Project</label>
                     <span asp-validation-for="Title" class="text-danger mt-0 fs-5"></span>
                     </div>
                 <div class="form-floating mb-3">
-                    <input asp-for="Description" class="form-control" aria-required="true" />
-                    <label asp-for="Description" style="margin-left: 10px" class="form-label fs-6">Last Name</label>
+
+                    <textarea id="tiny" asp-for="Description" class="display-6" aria-required="true" placeholder="Description Of Project" style="height: 100px;"></textarea>
                     <span asp-validation-for="Description" class="text-danger fs-5"></span>
                 </div>
+
+
                 <div class="form-floating mb-3">
-                    <input asp-for="TechnologiesUsed" class="form-control" aria-required="true" />
-                    <label asp-for="TechnologiesUsed" style="margin-left: 10px" class="form-label fs-6">Student ID</label>
-                    <span asp-validation-for="TechnologiesUsed" class="text-danger fs-5 "></span>
+                    <textarea asp-for="TechnologiesUsed" class="form-control" aria-required="true" style="height: 100px;"></textarea>
+                    <label asp-for="TechnologiesUsed" style="margin-left: 10px" class="form-label fs-6">Skills used seperate with comma</label>
+                    <span asp-validation-for="TechnologiesUsed" class="text-danger fs-5"></span>
                 </div>
+
                
                     <div class="col-6 col-md-3">
                         <button type="submit" class="btn bg-blue-to-cyan form-control">Save</button>
@@ -39,5 +42,14 @@
 
 
 @section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea#tiny',
+                  plugins: 'lists',
+        toolbar: 'bold | numlist bullist'
+
+
+         });
+    </script>
     <partial name="_ValidationScriptsPartial" />
 }

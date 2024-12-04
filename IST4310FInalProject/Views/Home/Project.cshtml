@@ -1,0 +1,42 @@
+﻿@model IEnumerable<IST4310FInalProject.Models.Project>
+
+<div class="container mt-4">
+    <h2 class="mb-4 display-6">Projects</h2>
+    <div class="row">
+        @foreach (var project in Model)
+        {
+            <div id="project-@project.Id" class=" col-lg-6 col-md-12 col-sm-12 mb-4 ">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <p class="card-title display-6 fs-3 ">@project.Title</p>
+                        <p class="card-text display-6 fs-4"> @project.TechnologiesUsed</p>
+                        <p class="card-text text-muted fs-5 ">@Html.Raw(project.Description)</p>
+                        <button onclick="Delete('/api/deleteproject/' + @project.Id, @project.Id)" class="btn bg-red-to-pink ">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a asp-controller="Home" asp-action="AddProject" class="btn bg-blue-to-cyan mt-2">Add Project</a>
+</div>
+<!-- Bootstrap Modal for Delete Confirmation -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title display-6 fs-3" id="deleteModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-4">
+                You won't be able to revert this!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-red-to-pink" id="confirmDeleteBtn">Yes, delete it!</button>
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

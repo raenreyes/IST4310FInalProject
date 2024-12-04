@@ -19,6 +19,12 @@ namespace IST4310FInalProject.Models
         public DateTime StartDate { get; set; }
         [Required]
         public DateTime EndDate { get; set; }
+        [Required]
+        public double Gpa { get; set; }
+        [Required]
+        public string City { get; set; }
+        [Required]
+        public string State { get; set; }
         [ForeignKey("StudentInfo")]
         public int StudentInfoId { get; set; }
 

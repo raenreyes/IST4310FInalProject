@@ -1,2 +1,41 @@
-﻿
+﻿@model StudentInfo
 
+<div class="row resume-margin tnr">
+    <h1 class="text-center">@Model.FirstName @Model.LastName</h1>
+    <p class="fs-5 text-center">@Model.City | @Model.PhoneNumber</p>
+    <div class="full-width-line"></div>
+    <h2 class="mt-2">EDUCATION</h2>
+    <div class="full-width-line"></div>
+    <div class="mt-2">
+        @foreach (var e in Model.Educations)
+        {
+            <div class="d-flex justify-content-between align-items-center">
+                <h3 class="fs-5 fw-bold">@e.SchoolName</h3>
+                <span class="text-end fs-5 fw-bold">@e.City</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="fs-5 ">@e.Degree of @e.Major</p>
+                <span class="text-end fs-5">@e.EndDate.ToString("MM/dd/yyyy")</span>
+            </div>
+            <ul class="fs-5">
+                <li>GPA: @e.Gpa</li>
+            </ul>
+        }
+    </div>
+    
+</div>
+
+
+
+
+
+<style>
+    .tnr {
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .resume-margin {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+</style>

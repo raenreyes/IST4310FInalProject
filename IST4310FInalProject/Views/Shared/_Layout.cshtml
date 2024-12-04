@@ -27,19 +27,26 @@
                             <a class="nav-link text-dark fs-5" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li> *@
                         <li class="nav-item">
-                            <a class="nav-link text-dark fs-5" asp-area="" asp-controller="Home" asp-action="AddProject">Project</a>
+                            <a class="nav-link text-dark fs-5" asp-area="" asp-controller="Home" asp-action="Project">Projects</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fs-5" asp-area="" asp-controller="Home" asp-action="Education">Education</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fs-5" asp-area="" asp-controller="Home" asp-action="Work">Work</a>
+                        </li>
+                       
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+   
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+   
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -49,6 +56,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.tiny.cloud/1/rrukiochy12q5vcy5luzwkk6uhn5xrfrhtks54xg1ryyiodw/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

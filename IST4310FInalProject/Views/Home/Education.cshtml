@@ -1,0 +1,51 @@
+﻿@model IEnumerable<IST4310FInalProject.Models.Education>
+
+<div class="container mt-4 display-6 ">
+    <h2 class="mb-4 display-6">Education</h2>
+    <div class="row">
+        @foreach (var edu in Model)
+        {
+            <div id="project-@edu.Id" class="col-lg-8 col-md-12 col-sm-12 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="card-title display-6 fs-3">@edu.SchoolName</p>
+                            <div class="text-end display-6 ">
+                                <p class="card-text text-muted fs-5">
+                                    @edu.StartDate.ToString("MM/dd/yyyy") - @edu.EndDate.ToString("MM/dd/yyyy")
+                                </p>
+                            </div>
+                        </div>
+                        <p class="card-text display-6 fs-4">@edu.Degree</p>
+                        <p class="card-text text-muted fs-5">@edu.Major</p>
+                        <p class="card-text text-muted fs-5">GPA: @edu.Gpa</p>
+                        <button onclick="Delete('/api/deleteeducation/' + @edu.Id, @edu.Id)" class="btn bg-red-to-pink">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a asp-controller="Home" asp-action="AddEducation" class="btn bg-blue-to-cyan mt-2">Add Education</a>
+</div>
+
+<!-- Bootstrap Modal for Delete Confirmation -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title display-6 fs-3" id="deleteModalLabel">Are you sure?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fs-4">
+                You won't be able to revert this!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-red-to-pink" id="confirmDeleteBtn">Yes, delete it!</button>
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,6 +18,17 @@
                     <label asp-for="LastName" style="margin-left: 10px" class="form-label fs-6">Last Name</label>
                     <span asp-validation-for="LastName" class="text-danger fs-5"></span>
                 </div>
+               
+                <div class="form-floating mb-3">
+                    <input asp-for="PhoneNumber" type="text" class="form-control" aria-required="true" />
+                    <label asp-for="PhoneNumber" style="margin-left: 10px" class="form-label fs-6">Phone Number</label>
+                    <span asp-validation-for="PhoneNumber" class="text-danger fs-5"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="City" type="text" class="form-control" aria-required="true" />
+                    <label asp-for="City" style="margin-left: 10px" class="form-label fs-6">City</label>
+                    <span asp-validation-for="City" class="text-danger fs-5"></span>
+                </div>
                 <div class="form-floating mb-3">
                     <input asp-for="StudentId" class="form-control" aria-required="true" />
                     <label asp-for="StudentId" style="margin-left: 10px" class="form-label fs-6">Student ID</label>

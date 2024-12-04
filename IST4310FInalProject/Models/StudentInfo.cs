@@ -21,6 +21,11 @@ namespace IST4310FInalProject.Models
         public string Major { get; set; }
         [Required]
         public string DegreeType { get; set; }
+        
+        [Required]
+        public string PhoneNumber { get; set; }
+        [Required]
+        public string City { get; set; }
         [Required]
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }

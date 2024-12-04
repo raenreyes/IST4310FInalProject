@@ -1,0 +1,65 @@
+﻿@model IST4310FInalProject.Models.WorkExperience
+
+<div class="container display-6">
+    <div class="row">
+        <p class="fs-1">Add Work Experience</p>
+        <div class="col-6">
+            <form method="post" class="row">
+                <input asp-for="Id" type="hidden" />
+                <!-- Hidden StudentInfoId field -->
+                <input asp-for="StudentInfoId" type="hidden" />
+
+                <div class="form-floating mb-3">
+                    <input asp-for="CompanyName" class="form-control" aria-required="true" />
+                    <label asp-for="CompanyName" style="margin-left: 10px" class="form-label fs-6">Company Name</label>
+                    <span asp-validation-for="CompanyName" class="text-danger mt-0 fs-5"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="JobTitle" class="form-control" aria-required="true" />
+                    <label asp-for="JobTitle" style="margin-left: 10px" class="form-label fs-6">Job Title</label>
+                    <span asp-validation-for="JobTitle" class="text-danger mt-0 fs-5"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+
+                    <textarea id="tiny" asp-for="Responsibilities" class="display-6" aria-required="true" placeholder="Responsibilities at your role" style="height: 100px;"></textarea>
+                    <span asp-validation-for="Responsibilities" class="text-danger fs-5"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="StartDate" type="date" class="form-control" aria-required="true" value="" />
+                    <label asp-for="StartDate" style="margin-left: 10px" class="form-label fs-6">Start Date</label>
+                    <span asp-validation-for="StartDate" class="text-danger mt-0 fs-5"></span>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input asp-for="EndDate" type="date" class="form-control" aria-required="true" value="" />
+                    <label asp-for="EndDate" style="margin-left: 10px" class="form-label fs-6">End Date</label>
+                    <span asp-validation-for="EndDate" class="text-danger mt-0 fs-5"></span>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn bg-blue-to-cyan form-control">Save</button>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <a asp-controller="Home" asp-action="Index" class="btn bg-red-to-pink form-control border">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea#tiny',
+                  plugins: 'lists',
+        toolbar: 'bold | numlist bullist'
+
+
+         });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}
