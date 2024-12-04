@@ -1,0 +1,43 @@
+﻿@model Project
+
+<div class="container display-6">
+    <div class="row">
+        <p class="fs-1  ">Projects</p>
+        <div class="col-6">
+            <form method="post" class="row">
+                <input asp-for="Id" type="hidden" />
+                <!-- Hidden UserId field -->
+                <input asp-for="StudentInfoId" type="hidden" />
+                    <div class="form-floating mb-3">
+                        <input asp-for="Title" class="form-control" aria-required="true" />
+                    <label asp-for="Title" style="margin-left: 10px" class="form-label fs-6">First Name</label>
+                    <span asp-validation-for="Title" class="text-danger mt-0 fs-5"></span>
+                    </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Description" class="form-control" aria-required="true" />
+                    <label asp-for="Description" style="margin-left: 10px" class="form-label fs-6">Last Name</label>
+                    <span asp-validation-for="Description" class="text-danger fs-5"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="TechnologiesUsed" class="form-control" aria-required="true" />
+                    <label asp-for="TechnologiesUsed" style="margin-left: 10px" class="form-label fs-6">Student ID</label>
+                    <span asp-validation-for="TechnologiesUsed" class="text-danger fs-5 "></span>
+                </div>
+               
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn bg-blue-to-cyan form-control">Save</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Home" asp-action="Index" class="btn bg-red-to-pink form-control border">Back</a>
+                    </div>
+              
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,59 @@
+﻿@model StudentInfo
+
+<div class="container display-6">
+    <div class="row">
+        <p class="fs-1  ">Edit Student Information!</p>
+        <div class="col-6">
+            <form method="post" class="row">
+                <input asp-for="Id" type="hidden" />
+                <!-- Hidden UserId field -->
+                <input asp-for="UserId" type="hidden" />
+                    <div class="form-floating mb-3">
+                        <input asp-for="FirstName" class="form-control" aria-required="true" />
+                        <label asp-for="FirstName" style="margin-left: 10px" class="form-label fs-6">First Name</label>
+                    <span asp-validation-for="FirstName" class="text-danger mt-0 fs-5"></span>
+                    </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="LastName" class="form-control" aria-required="true" />
+                    <label asp-for="LastName" style="margin-left: 10px" class="form-label fs-6">Last Name</label>
+                    <span asp-validation-for="LastName" class="text-danger fs-5"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="StudentId" class="form-control" aria-required="true" />
+                    <label asp-for="StudentId" style="margin-left: 10px" class="form-label fs-6">Student ID</label>
+                    <span asp-validation-for="StudentId" class="text-danger fs-5 "></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Gender" class="form-control" aria-required="true" />
+                    <label asp-for="Gender" style="margin-left: 10px" class="form-label fs-6">Gender</label>
+                    <span asp-validation-for="Gender" class="text-danger fs-5"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="DegreeType" class="form-control" aria-required="true" />
+                    <label asp-for="DegreeType" style="margin-left: 10px" class="form-label fs-6">Degree</label>
+                    <span asp-validation-for="DegreeType" class="text-danger fs-5"></span>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Major" class="form-control" aria-required="true" />
+                    <label asp-for="Major" style="margin-left: 10px" class="form-label fs-6">Major</label>
+                    <span asp-validation-for="Major" class="text-danger fs-5"></span>
+                </div>
+               
+                
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn bg-blue-to-cyan form-control">Save</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Home" asp-action="Index" class="btn bg-red-to-pink form-control border">Back</a>
+                    </div>
+              
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
