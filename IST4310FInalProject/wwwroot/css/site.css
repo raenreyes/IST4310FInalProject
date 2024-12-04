@@ -29,3 +29,46 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+.blue-to-cyan {
+    
+    font-weight: bold;
+    background: linear-gradient(to right, #0d6efd, #0dcaf0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cyan-to-blue {
+    
+    font-weight: bold;
+    background: linear-gradient(to right, #0dcaf0, #0d6efd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-blue-to-cyan {
+    font-weight: bold;
+    background: linear-gradient(to right, #0d6efd, #0dcaf0);
+    color: white; /* Optional: Adjust text color to improve readability */
+}
+
+.bg-cyan-to-blue {
+    font-weight: bold;
+    background: linear-gradient(to right, #0dcaf0, #0d6efd);
+    color: white; /* Optional: Adjust text color to improve readability */
+}
+.bg-red-to-orange {
+    font-weight: bold;
+    background: linear-gradient(to right, #dc3545, #fd7e14); /* Red to Orange */
+    color: white; /* Ensures text visibility */
+}
+
+.bg-red-to-pink {
+    font-weight: bold;
+    background: linear-gradient(to right, #dc3545, #ff6393); /* Red to Pink */
+    color: white; /* Ensures text visibility */
+}
+
+.btn:hover {
+    color: white
+}
+
