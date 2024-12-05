@@ -1,0 +1,33 @@
+﻿@model DreamJobVM // Ensure the correct namespace
+
+
+
+<h2>Enter Your Dream Job</h2>
+
+<div id="chat-form">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Job">Question:</label>
+            <input asp-for="Job" class="form-control" value="" placeholder="Put Dream Job" required />
+            <span asp-validation-for="Job" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Ask</button>
+    </form>
+</div>
+@if (!string.IsNullOrEmpty(Model.Response))
+{
+    <h2>Response</h2>
+    <div>
+        @Html.Raw(Model.Response)
+    </div>
+@* 
+    <div> *********************************************************** </div>
+    <p>@ViewBag.ResumeSummary</p> *@
+}
+
+
+
+@section Scripts {
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+}
+

@@ -16,6 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Education> Educations { get; set; }
     public DbSet<WorkExperience> WorkExperiences { get; set; }
     public DbSet<Project> Projects { get; set; }
+    public DbSet<Skill> Skills { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -45,5 +46,10 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
             .WithMany(s => s.Projects)  // You can add Projects property in StudentInfo if needed
             .HasForeignKey(p => p.StudentInfoId)
             .OnDelete(DeleteBehavior.Cascade);
+        builder.Entity<Skill>()
+           .HasOne(p => p.StudentInfo)
+           .WithMany(s => s.Skills)  // You can add Projects property in StudentInfo if needed
+           .HasForeignKey(p => p.StudentInfoId)
+           .OnDelete(DeleteBehavior.Cascade);
     }
 }

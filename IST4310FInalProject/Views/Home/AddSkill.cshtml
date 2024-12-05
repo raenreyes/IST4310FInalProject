@@ -1,0 +1,38 @@
+﻿@model Skill
+
+<div class="container display-6">
+    <div class="row">
+        <p class="fs-1  ">Projects</p>
+        <div class="col-6">
+            <form method="post" class="row">
+                <input asp-for="Id" type="hidden" />
+                <!-- Hidden UserId field -->
+                <input asp-for="StudentInfoId" type="hidden" />
+                    <div class="form-floating mb-3">
+                        <input asp-for="Heading" class="form-control" aria-required="true" />
+                    <label asp-for="Heading" style="margin-left: 10px" class="form-label fs-6">Heading Of Skill</label>
+                    <span asp-validation-for="Heading" class="text-danger mt-0 fs-5"></span>
+                    </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="ToolSkills" class="form-control" aria-required="true" />
+                    <label asp-for="ToolSkills" style="margin-left: 10px" class="form-label fs-6">Skills</label>
+                    <span asp-validation-for="ToolSkills" class="text-danger mt-0 fs-5"></span>
+                </div>
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn bg-blue-to-cyan form-control">Save</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Home" asp-action="Skill" class="btn bg-red-to-pink form-control border">Back</a>
+                    </div>
+              
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    
+    <partial name="_ValidationScriptsPartial" />
+}

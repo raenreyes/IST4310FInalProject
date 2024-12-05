@@ -207,6 +207,48 @@ namespace IST4310FInalProject.Controllers
 
             return View(model);
         }
+        public async Task<IActionResult> Skill()
+        {
+            await InitializeUserDataAsync();
+            var studentInfo = await _context.StudentInfos
+                                            .Include(s => s.Skills)
+                                            .FirstOrDefaultAsync(s => s.Id == _studentInfoExists.Id);
+
+            if (studentInfo == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(studentInfo.Skills);
+        }
+        public async Task<IActionResult> AddSkill()
+        {
+            await InitializeUserDataAsync(); // Initialize user and student info once
+
+            if (_studentInfoExists != null)
+            {
+                var model = new Skill { StudentInfoId = _studentInfoExists.Id };
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddSkill(Skill model)
+        {
+            await InitializeUserDataAsync(); // Initialize user and student info once
+
+            if (ModelState.IsValid)
+            {
+
+                _context.Skills.Add(model);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Skill));
+            }
+
+            return View(model);
+        }
         [HttpDelete]
         [Route("api/deleteproject/{id}")]
         public IActionResult DeleteProject(int? id)
@@ -252,10 +294,7 @@ namespace IST4310FInalProject.Controllers
 
             return Json(new { success = true, message = "Delete Successful" });
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        
         public async Task<IActionResult> Resume()
         {
             await InitializeUserDataAsync();
@@ -265,6 +304,7 @@ namespace IST4310FInalProject.Controllers
                 .Include(s => s.WorkExperiences)
                 .Include(s => s.Educations)
                 .Include(s => s.Projects)
+                .Include(s => s.Skills)
                 .FirstOrDefaultAsync(s => s.Id == _studentInfoExists.Id);
 
             if (studentInfo == null)

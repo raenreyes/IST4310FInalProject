@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using IST4310FInalProject.Data;
 using IST4310FInalProject.Utilities;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using IST4310FInalProject.Service;
+using Microsoft.SemanticKernel;
 namespace IST4310FInalProject
 {
     public class Program
@@ -25,6 +27,9 @@ namespace IST4310FInalProject
             builder.Services.AddScoped<IEmailSender, EmailSender>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddKernel();
+            builder.Services.AddOpenAIChatCompletion("gpt-4o", builder.Configuration["AI:OpenAI:ApiKey"]);
+            builder.Services.AddScoped<IChatHistoryService, ChatHistoryService>();
 
             var app = builder.Build();
 

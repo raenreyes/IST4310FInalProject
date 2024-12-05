@@ -20,6 +20,7 @@ namespace IST4310FInalProject.Models
         [Required]
         public DateTime EndDate { get; set; }
         [Required]
+        [Range(0, 4)]
         public double Gpa { get; set; }
         [Required]
         public string City { get; set; }

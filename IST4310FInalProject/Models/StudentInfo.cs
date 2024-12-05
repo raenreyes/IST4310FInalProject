@@ -39,6 +39,7 @@ namespace IST4310FInalProject.Models
         public virtual ICollection<Education> Educations { get; set; } = new List<Education>();
         public virtual ICollection<WorkExperience> WorkExperiences { get; set; } = new List<WorkExperience>();
         public virtual ICollection<Project> Projects { get; set; } = new List<Project>();
+        public virtual ICollection<Skill> Skills { get; set; } = new List<Skill>();
 
     }
 }
