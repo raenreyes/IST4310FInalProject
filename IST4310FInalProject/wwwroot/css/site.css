@@ -80,3 +80,7 @@ body {
     width: 100%;
     border: none;
 }
+/*.logo-img {
+    max-width: 100px;*/ /* Set the desired width */
+    /*height: auto;*/ /* Maintain aspect ratio */
+/*}*/

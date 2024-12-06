@@ -56,43 +56,21 @@ namespace IST4310FInalProject.Controllers
             };
             return View(viewModel);
         }
-        //[HttpPost]
-        //public async Task<IActionResult> AnalyzeAI(DreamJob model)
-        //{
-        //    if (string.IsNullOrWhiteSpace(model.Job))
-        //    {
-        //        return BadRequest("Question cannot be empty.");
-        //    }
-
-        //    _chatHistory.AddMessage(model.Job, true);
-
-
-
-        //    var responseBuilder = new System.Text.StringBuilder();
-        //    await foreach (var response in _chatService.GetStreamingChatMessageContentsAsync(_chatHistory.GetChatHistory()))
-        //    {
-        //        responseBuilder.Append(response);
-        //    }
-
-
-        //    var viewModel = new DreamJobVM
-        //    {
-        //        Job = model,
-        //        Response = responseBuilder.ToString()
-        //    };
-
-
-        //    return View(viewModel);
-        //}
+        
         [HttpPost]
         public async Task<IActionResult> AnalyzeAI(DreamJob model)
         {
-            if (string.IsNullOrWhiteSpace(model.Job))
+            
+           if(!ModelState.IsValid)
             {
-                return BadRequest("The job description cannot be empty.");
+                var returnView = new DreamJobVM
+                {
+                    Job = new DreamJob(),
+                    Response = string.Empty
+                };
+                return View(returnView);
+                
             }
-
-            // Initialize user data (userId and StudentInfo)
             await InitializeUserDataAsync();
 
             if (_studentInfoExists == null)
@@ -112,31 +90,37 @@ namespace IST4310FInalProject.Controllers
 
             // Step 2: Ask Semantic Kernel to review the resume and provide feedback
             var prompt = @$"
-    A user is applying for their dream job as: {model.Job}.
-    Below is their resume information:
-    {resumeSummary}
+                A user is applying for their dream job as: {model.Job}.
+                Below is their resume information:
+                {resumeSummary}
 
-    Please provide a comprehensive analysis of their resume, focusing on the following:
+                Please provide a comprehensive analysis of their resume, focusing on the following:
 
-    1. **Skills**: 
-       - Identify how their current skills align with the requirements and expectations of the dream job.
-       - Suggest additional skills or certifications they can acquire to strengthen their application and improve their suitability for the role.
+                1. **Skills**:  
+                   - Identify how their current skills align with the requirements and expectations of the dream job.  
+                   - Suggest additional skills or certifications they can acquire to strengthen their application and improve their suitability for the role.  
 
-    2. **Projects**:
-       - Evaluate the relevance and impact of their listed projects in the context of the dream job's responsibilities and requirements.
-       - Highlight specific aspects of their projects that showcase their readiness for the role.
-       - Provide suggestions on how they can present or expand upon their project experience to better align with the job.
+                2. **Projects**:  
+                   - Evaluate the relevance and impact of their listed projects in the context of the dream job's responsibilities and requirements.  
+                   - Highlight specific aspects of their projects that showcase their readiness for the role.  
+                   - Provide suggestions on how they can present or expand upon their project experience to better align with the job.  
 
-    3. **Work Experience**:
-       - Analyze the applicability of their work experience to the dream job, including transferable skills and relevant accomplishments.
-       - Identify any potential gaps or areas for improvement in their experience and recommend actionable steps to address them.
+                3. **Work Experience**:  
+                   - Analyze the applicability of their work experience to the dream job, including transferable skills and relevant accomplishments.  
+                   - Identify any potential gaps or areas for improvement in their experience and recommend actionable steps to address them.  
 
-    4. **Overall Recommendations**:
-       - Offer tailored advice on how to refine their resume and tailor their application to maximize their chances of securing the dream job.
-       - Suggest strategies for enhancing their professional profile, including networking tips, interview preparation, or additional training.
+                4. **Education**:  
+                   - Assess whether their current education level aligns with the job's qualifications and expectations.  
+                   - Suggest if additional degrees, certifications, or courses would enhance their candidacy.  
+                   - Recommend relevant fields of study or specialized training that could improve their suitability for the position.  
 
-    Provide a detailed, constructive, and actionable analysis to help the user understand how their background positions them for the dream job and what steps they can take to increase their chances of success.
-    ";
+                5. **Overall Recommendations**:  
+                   - Offer tailored advice on how to refine their resume and tailor their application to maximize their chances of securing the dream job.  
+                   - Suggest strategies for enhancing their professional profile, including networking tips, interview preparation, or additional training.  
+
+                Provide a detailed, constructive, and actionable analysis to help the user understand how their background positions them for the dream job and what steps they can take to increase their chances of success.
+                ";
+
 
 
 
@@ -150,12 +134,13 @@ namespace IST4310FInalProject.Controllers
             {
                 responseBuilder.Append(responses);
             }
-
+            var responseFormatted = responseBuilder.ToString()
+    .Replace("\n", "<br>").Replace("*","").Replace("#","");
             // Prepare ViewModel for the view
             var viewModel = new DreamJobVM
             {
                 Job = model,
-                Response = responseBuilder.ToString(),
+                Response = responseFormatted,
             };
 
             return View(viewModel);
